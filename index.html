@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/script.js" defer></script>
+    <title>Calculator</title>
+  </head>
+  <body>
+    <main class="calculator">
+      <div class="userInput">0</div>
+        <div class="buttons">
+            <div class = "row-1">
+            <button class="btn-number" data-type="clear" id="clear">C</button>
+            <button class="btn-operator" data-type="operator" data-key="divide">&divide;</button>
+            <button class="btn-operator" data-type="operator" data-key="times">&times;</button>
+            <button class="btn-operator" data-type="delete" id="backspace">&#8592;</button>
+            </div>
+            <div class = "row-2">
+            <button class="btn-number" data-type="number" id="seven">7</button>
+            <button class="btn-number" data-type="number" id="eight">8</button>
+            <button class="btn-number" data-type="number" id="nine">9</button>
+            <button class="btn-operator" data-type="operator" data-key="minus">-</button>
+            </div>
+            <div class = "row-3">
+            <button class="btn-number" data-type="number" id="four">4</button>
+            <button class="btn-number" data-type="number" id="five">5</button>
+            <button class="btn-number" data-type="number" id="six">6</button>
+            <button class="btn-operator" data-key="plus" data-type="operator">+</button>
+            </div>
+            <div class = "row-4">
+            <button class="btn-number" data-type="number" id="one">1</button>
+            <button class="btn-number" data-type="number" id="two">2</button>
+            <button class="btn-number" data-type="number" id="three">3</button>
+            <button class="btn-operator" data-type="equal" id="equals">=</button>
+            </div>
+            <div class = "row-5">
+            <button class="btn-number" data-type="number" id="zero">0</button>
+            <button class="btn-number" data-type="decimal" id="decmial">.</button>
+            </div>
+    </div>
+    </main>
+  </body>
+</html>
