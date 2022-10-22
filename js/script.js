@@ -1,6 +1,6 @@
 const calculator = document.querySelector(".calculator");
-const buttons = document.querySelector(".buttons");
-const display = document.querySelector(".userInput");
+const buttons = calculator.querySelector(".buttons");
+const display = calculator.querySelector(".userInput");
 const operatorButtons = buttons.querySelectorAll('[data-type="operator"]');
 
 buttons.addEventListener("click", (event) => {
@@ -13,12 +13,10 @@ buttons.addEventListener("click", (event) => {
   const { type } = button.dataset;
   const { previousButtonType } = calculator.dataset;
 
-  //is this a number key?
+  //is this a number type?
   if (type === "number") {
-    if (displayValue === "0") {
-      //replace displayValue
-      display.textContent = buttonValue;
-    } else if (previousButtonType === "operator") {
+    if (displayValue === "0" || previousButtonType === "operator") {
+      //replace displayValue with buttonValue pressed
       display.textContent = buttonValue;
     } else {
       display.textContent = displayValue + buttonValue;
@@ -32,7 +30,6 @@ buttons.addEventListener("click", (event) => {
     operatorButtons.forEach((el) => {
       el.dataset.state = "";
     });
-    button.dataset.state = "selection";
 
     calculator.dataset.firstNumber = displayValue;
     calculator.dataset.operator = button.dataset.key;
@@ -44,15 +41,16 @@ buttons.addEventListener("click", (event) => {
     const operator = calculator.dataset.operator;
     const secondNumber = displayValue;
     display.textContent = calculate(firstNumber, operator, secondNumber);
+    console.log(firstNumber, operator, secondNumber);
   }
 
-  if (type === 'clear') {
-    display.textContent = '0'
-    delete calculator.dataset.firstNumber
-    delete calculator.dataset.operator
+  if (type === "clear") {
+    display.textContent = "0";
+    delete calculator.dataset.firstNumber;
+    delete calculator.dataset.operator;
   }
 
-  calculator.dataset.previousButtonType = type
+  calculator.dataset.previousButtonType = type;
 });
 
 function calculate(firstNumber, operator, secondNumber) {
@@ -61,28 +59,8 @@ function calculate(firstNumber, operator, secondNumber) {
 
   if (operator === "plus") return firstNumber + secondNumber;
   if (operator === "minus") return firstNumber - secondNumber;
-  if (operator === "times") return Math.round(firstNumber * secondNumber * 100) /100;
-  if (operator === "divide") return Math.round(firstNumber / secondNumber * 100) /100;
-  console.log(calculate)
-
-  //let result = '';
-
-  //switch (operator) {
-  //    case 'plus': result = firstNumber + secondNumber; break
-  //   case 'minus': result = firstNumber - secondNumber; break
-  //    case 'times': result = firstNumber * secondNumber; break
-  //    case 'divide': result = firstNumber / secondNumber; break
-  //}
-  //return result.toFixed(2)
-}
-
-function clearCalculator() {
-  // Press the clear key
-  const clearButton = document.querySelector('[data-type="clear"]');
-  clearButton.click();
-
-  // Clear operator states
-  operatorButtons.forEach((key) => {
-    button.dataset.state = "";
-  });
+  if (operator === "times")
+    return Math.round(firstNumber * secondNumber * 100) / 100;
+  if (operator === "divide")
+    return Math.round((firstNumber / secondNumber) * 100) / 100;
 }
