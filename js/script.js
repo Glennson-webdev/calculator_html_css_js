@@ -47,7 +47,6 @@ buttons.addEventListener("click", (event) => {
     delete calculator.dataset.operator;
   }
 
-
   calculator.dataset.previousButtonType = type;
 });
 
@@ -56,7 +55,7 @@ function calculate(firstNumber, operator, secondNumber) {
   secondNumber = parseInt(secondNumber);
 
   if (operator === "plus") return firstNumber + secondNumber;
-  if (operator === "minus") return firstNumber - secondNumber;
+  if (operator === "minus") return firstNumber - secondNumber; 
   if (operator === "times")
     return Math.round(firstNumber * secondNumber * 10000) / 10000;
   if (operator === "divide" && secondNumber != "0") {
@@ -64,5 +63,4 @@ function calculate(firstNumber, operator, secondNumber) {
   } else {
     return "∞";
   }
-
 }
