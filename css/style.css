@@ -34,7 +34,7 @@ a {
     align-content: center;
 }
 
-.userInput {
+.currentUserInput {
   display: flex;
   justify-content: right;
   align-items: center;
@@ -97,7 +97,7 @@ button:hover {
   background-color: #fefefe;
 }
 
-.userInput {
+.currentUserInput {
     background-color: rgb(227, 212, 212);
     font-weight: bold;
 }

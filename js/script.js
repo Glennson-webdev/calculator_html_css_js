@@ -1,6 +1,6 @@
 const calculator = document.querySelector(".calculator");
 const buttons = calculator.querySelector(".buttons");
-const display = calculator.querySelector(".userInput");
+const display = calculator.querySelector(".currentUserInput");
 const operatorButtons = buttons.querySelectorAll('[data-type="operator"]');
 
 buttons.addEventListener("click", (event) => {
@@ -13,17 +13,15 @@ buttons.addEventListener("click", (event) => {
   const { type } = button.dataset;
   const { previousButtonType } = calculator.dataset;
 
-  //is this a number type?
   if (type === "number") {
     if (displayValue === "0" || previousButtonType === "operator") {
-      //replace displayValue with buttonValue pressed
+      //replace displayValue 0 with buttonValue pressed
       display.textContent = buttonValue;
     } else {
       display.textContent = displayValue + buttonValue;
     }
   }
 
-  //check for operator button
   if (type === "operator") {
     const operatorButtons = buttons.querySelectorAll('[data-type="operator"]');
     //one operator per equation, reset state
@@ -41,7 +39,6 @@ buttons.addEventListener("click", (event) => {
     const operator = calculator.dataset.operator;
     const secondNumber = displayValue;
     display.textContent = calculate(firstNumber, operator, secondNumber);
-    console.log(firstNumber, operator, secondNumber);
   }
 
   if (type === "clear") {
@@ -49,6 +46,7 @@ buttons.addEventListener("click", (event) => {
     delete calculator.dataset.firstNumber;
     delete calculator.dataset.operator;
   }
+
 
   calculator.dataset.previousButtonType = type;
 });
@@ -60,7 +58,11 @@ function calculate(firstNumber, operator, secondNumber) {
   if (operator === "plus") return firstNumber + secondNumber;
   if (operator === "minus") return firstNumber - secondNumber;
   if (operator === "times")
-    return Math.round(firstNumber * secondNumber * 100) / 100;
-  if (operator === "divide")
-    return Math.round((firstNumber / secondNumber) * 100) / 100;
+    return Math.round(firstNumber * secondNumber * 10000) / 10000;
+  if (operator === "divide" && secondNumber != "0") {
+    return Math.round((firstNumber / secondNumber) * 10000) / 10000;
+  } else {
+    return "∞";
+  }
+
 }
